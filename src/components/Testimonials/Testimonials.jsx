@@ -24,7 +24,7 @@ const Testimonials = () => {
       user: "Ronee Brown",
       company: "Fusion Dynamics",
       image: "/user1.jpg",
-      text: "Working with the team at XYZ Company was a game-changer for our project. Their attention to detail and innovative solutions helped us achieve our goals faster than we thought possible. We are grateful for their expertise and professionalism!",
+      text: "Working with the team at XYZ Company was a game-changer for our project. Their attention to detail and innovative solutions helped us achieve our goals faster than we thought possible. We are grateful for their expertise and professionalism",
     },
     {
       user: "Michael Wilson",
