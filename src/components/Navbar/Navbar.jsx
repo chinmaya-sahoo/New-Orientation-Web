@@ -1,152 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { Menu, X } from "lucide-react";
+import { Link , NavLink} from 'react-router-dom';
+import { useState } from "react";
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const { scrollY } = useScroll();
+ const navItems = [
+   { label: "Home", href: "/" },
+    { label: "Features", href: "/features" },
+    { label: "Achievements", href: "/achievements" },
+    { label: "Testimonials", href: "/testimonials" },
+    // { label: "Login", href: "/login" },
+    // { label: "Sign Up", href: "/signup" },
+  ];
+  
+  const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
 
-    //for future enhancements
-    const menuItems = [
-        { name: 'Home', link: '/' },
-        // { name: 'AboutUs', link: '/about-us' },
-        // { name: 'Projects', link: '/project' },
-        // { name: 'Activities', link: '/activities' },
-        // { name: 'All Events', link: '/all-events' },
-        // { name: 'Achievements', link: '/achievements' },
-        // { name: 'Team', link: '/members' },
-        // { name: 'Blogs', link: '/blogs' },
-        // { name: 'Contact', link: '#contact' },
-    ];
+  const toggleNavbar = () => {
+    setMobileDrawerOpen(!mobileDrawerOpen);
+  };
 
-    // Transform scroll position to border radius
-    // At top (0px): 0px border radius
-    // At scroll (100px): 2rem (32px) border radius
-    const borderRadius = useTransform(scrollY, [0, 100], [0, 32]);
-
-    // Transform background opacity based on scroll
-    const bgOpacity = useTransform(scrollY, [0, 100], [0.3, 0.9]);
-
-    return (
-        <motion.nav
-            className="px-4 py-3 font-heinch text-lg sticky top-0 bg-black z-10"
-            style={{
-                borderRadius: borderRadius,
-                backgroundColor: 'rgba(0, 0, 0, var(--bg-opacity))',
-                '--bg-opacity': bgOpacity
-            }}
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6 }}
-        >
-            <div className="container mx-auto flex justify-between items-center">
-                {/* Logo */}
-                <motion.div
-                    className="text-white text-5xl my-5 font-bold"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <Link to="/">
-                        <img src="/iic_logo.png" alt="logo" className="w-10 h-10" />
-                    </Link>
-                </motion.div>
-
-                {/* Links and Hamburger */}
-                <div className="flex items-center">
-                    {/* Desktop Links */}
-                    <motion.div
-                        className="hidden lg:flex space-x-6"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        {menuItems.map((item, index) => (
-                            <motion.a
-                                key={item}
-                                className="text-white hover:text-gray-200 transition-colors"
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: 0.1 * index }}
-                                whileHover={{ scale: 1.05 }}
-                            >
-                                {
-                                    item.link === '#contact' ?
-                                        <Link to={item.link}>{item.name}</Link> :
-                                        <a href={item.link}>{item.name}</a>
-                                }
-                            </motion.a>
-                        ))}
-                    </motion.div>
-
-                    {/* Hamburger Icon */}
-                    <motion.div
-                        className="lg:hidden"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="text-white focus:outline-none"
-                        >
-                            <svg
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                {isOpen ? (
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                ) : (
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                )}
-                            </svg>
-                        </button>
-                    </motion.div>
-                </div>
+  return (
+    <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
+      <div className="container px-4 mx-auto relative lg:text-sm">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center flex-shrink-0 cursor-pointer">
+            <img className="h-10 w-10 mr-2" src="/iic_logo.png" alt="Logo" />
+            <span className="text-xl tracking-tight">IIC</span>
+          </div>
+          <ul className="hidden lg:flex ml-14 space-x-12">
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <NavLink to={item.href}>{item.label}</NavLink>
+              </li>
+            ))}
+          </ul>
+          <div className="hidden lg:flex justify-center space-x-12 items-center">
+            <NavLink to="/signup" className="py-2 px-3 border rounded-md">
+              Sign Up
+            </NavLink>
+            <NavLink
+              to="/login"
+              className="bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md"
+            >
+              Login
+            </NavLink>
+          </div>
+          <div className="lg:hidden md:flex flex-col justify-end">
+            <button onClick={toggleNavbar}>
+              {mobileDrawerOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+        {mobileDrawerOpen && (
+          <div className="fixed right-0 z-20 bg-neutral-900 w-full p-12 flex flex-col justify-center items-center lg:hidden">
+            <ul>
+              {navItems.map((item, index) => (
+                <li key={index} className="py-4">
+                  <NavLink to={item.href}>{item.label}</NavLink>
+                </li>
+              ))}
+            </ul>
+            <div className="flex space-x-6">
+              <NavLink to="/signup" className="py-2 px-3 border rounded-md">
+                Sign Up
+              </NavLink>
+              <NavLink
+                to="/login"
+                className="py-2 px-3 rounded-md bg-gradient-to-r from-orange-500 to-orange-800"
+              >
+                Login
+              </NavLink>
             </div>
-
-            {/* Mobile Menu */}
-            {isOpen && (
-                <motion.div
-                    className="lg:hidden"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {menuItems.map((item, index) => (
-                        <motion.div
-                            key={item.name}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: 0.05 * index }}
-                            whileHover={{ x: 10 }}
-                        >
-                            <Link
-                                to={item.link}
-                                className="block px-4 py-2 text-white hover:bg-blue-800 transition-colors"
-                            >
-                                {item.name}
-                            </Link>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            )}
-        </motion.nav>
-    );
+          </div>
+        )}
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;

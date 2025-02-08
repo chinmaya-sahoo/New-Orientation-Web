@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className='bg-black text-white'>
-      <Navbar />
+      {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
