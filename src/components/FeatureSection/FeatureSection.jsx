@@ -11,7 +11,7 @@ const features = [
     },
     {
       icon: <Users />,
-      text: "Mentorship & Guidance",
+      text: "Mentorship And Guidance",
       description:
         "Connect with experienced mentors who provide valuable feedback and support for refining your ideas.",
     },
@@ -35,7 +35,7 @@ const features = [
     },
     {
       icon: <Presentation />,
-      text: "Showcase & Funding Opportunities",
+      text: "Showcase Funding Opportunities",
       description:
         "Present your projects to potential investors and industry leaders for funding and real-world implementation.",
     },
