@@ -29,7 +29,9 @@ const Navbar = () => {
           <ul className="hidden lg:flex ml-14 space-x-12">
             {navItems.map((item, index) => (
               <li key={index}>
-                <NavLink to={item.href}>{item.label}</NavLink>
+                <NavLink to={item.href} className={({isActive}) => `hover:text-orange-500 ${isActive ? "text-orange-500" : ""}`}>
+                  {item.label}
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -55,7 +57,9 @@ const Navbar = () => {
             <ul>
               {navItems.map((item, index) => (
                 <li key={index} className="py-4">
-                  <NavLink to={item.href}>{item.label}</NavLink>
+                  <NavLink to={item.href} className={({isActive}) => `hover:text-orange-500 ${isActive ? "text-orange-500" : ""}`}>
+                  {item.label}
+                </NavLink>
                 </li>
               ))}
             </ul>
