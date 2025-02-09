@@ -6,6 +6,7 @@ import Registration from './components/Registration/Registration'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import Hashira from './components/Domain/Hashira'
+import Ticket from './components/Ticket/Ticket.jsx'
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
       <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/registration" element={<Registration />} />
+          <Route path="/ticket" element={<Ticket/>} />
         </Routes>
       <Footer/>
     </div>
