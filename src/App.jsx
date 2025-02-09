@@ -5,6 +5,7 @@ import Home from './components/Home/Home'
 import Registration from './components/Registration/Registration'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
+import Hashira from './components/Domain/Hashira'
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
-        </Routes>    
+        </Routes>
+        <Hashira />
       <Footer/>
     </div>
   )
