@@ -18,3 +18,8 @@ body {
     font-family: 'Heinch', sans-serif;
     background-color: #F2F2F2;
 }
+
+body ::selection {
+  background-color: rgb(248, 129, 32); /* Blue background */
+  color: black ; /* White text */
+}
