@@ -4,6 +4,7 @@ import HeroSection from '../HeroSection/HeroSection'
 import FeatureSection from '../FeatureSection/FeatureSection'
 import Testimonials from '../Testimonials/Testimonials'
 import Footer from '../Footer/Footer'
+import Hashira from '../Domain/Hashira'
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
         <HeroSection />
         <FeatureSection />
         <Testimonials />
+        <Hashira />
       </div>
     </div>
   )

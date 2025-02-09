@@ -16,7 +16,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/registration" element={<Registration />} />
         </Routes>
-        <Hashira />
       <Footer/>
     </div>
   )
